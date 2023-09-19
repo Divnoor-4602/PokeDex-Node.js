@@ -1,0 +1,39 @@
+<!-- TODO: Create a pokedex for all pokemon as the home page -->
+<!--todo: a rotom pokedex, only for desktop  -->
+<!-- todo: create a bootstrap form to send data to e.js -->
+<!-- todo: Display the name -->
+<!-- todo: Display the type -->
+<!-- todo: Display the base stats -->
+<!-- todo: Display the abilities -->
+<!-- todo: Display the sprite -->
+<!-- todo: list of all the moves learnt -->
+<!-- todo: user can enter the name of a pokemon to recieve all the dex info -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PokeDex</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+    <!-- simple pokemon submit form -->
+    <form action="/pokemon" method="post">
+        <label for="pokename">Enter name</label>
+        <input type="text" name="pokemon-name" id="pokename">
+        <button type="submit">submit</button>
+    </form>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
