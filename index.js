@@ -1,4 +1,4 @@
-import express from "express";
+import express, { response } from "express";
 import axios from "axios";
 import bodyParser from "body-parser";
 import { name } from "ejs";
@@ -19,9 +19,32 @@ app.listen(port, (req, res) => {
   console.log(`Listening at ${port}`);
 });
 
+//todo: make a home page with all the pokemon in the game
+//todo: When a pokemon is clicked render a specific page showing all the details of the pokemon
+
 // get the home page
-app.get("/", (req, res) => {
-  res.render("index.ejs");
+app.get("/", async (req, res) => {
+  let pokemonImage = [];
+  let pokemonName = [];
+  // all pokemon rendering
+  let response = await axios.get(API_URL, {
+    params: {
+      limit: 10,
+    },
+  });
+  let pokemonToDisplay = response.data.results;
+  pokemonToDisplay.forEach((element) => {
+    pokemonName.push(element["name"]);
+  });
+
+  for (let i = 0; i < pokemonToDisplay.length; i++) {
+    let imageReqUrl = pokemonToDisplay[0]["url"];
+    let imageResponse = await axios.get(imageReqUrl);
+    pokemonImage.push(
+      imageResponse.data["sprites"]["other"]["dream_world"]["front_default"]
+    );
+  }
+  res.render("index.ejs", { pokemonList: pokemonName, images: pokemonImage });
 });
 
 // fetching pokemon details from the api according to the search of the user
@@ -52,8 +75,12 @@ app.post("/pokemon", async (req, res) => {
       [individualStat["stat"]["name"]]: individualStat["base_stat"],
     };
     count += 1;
-    console.log(count);
   });
-});
+  count = 1;
 
-// todo: the server sends back the information and communicates with the api
+  // fetching image
+  let pokeSprite =
+    pokeResponse["sprites"]["other"]["dream_world"]["front_default"];
+
+  console.log(pokeSprite);
+});
