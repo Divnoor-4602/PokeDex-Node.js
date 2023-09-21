@@ -29,7 +29,7 @@ app.get("/", async (req, res) => {
   // all pokemon rendering
   let response = await axios.get(API_URL, {
     params: {
-      limit: 10,
+      limit: 36,
     },
   });
   let pokemonToDisplay = response.data.results;
@@ -38,7 +38,7 @@ app.get("/", async (req, res) => {
   });
 
   for (let i = 0; i < pokemonToDisplay.length; i++) {
-    let imageReqUrl = pokemonToDisplay[0]["url"];
+    let imageReqUrl = pokemonToDisplay[i]["url"];
     let imageResponse = await axios.get(imageReqUrl);
     pokemonImage.push(
       imageResponse.data["sprites"]["other"]["dream_world"]["front_default"]
